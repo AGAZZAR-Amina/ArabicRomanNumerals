@@ -1,6 +1,7 @@
 plugins {
 	id 'java'
-	id 'idea' // optional (to generate IntelliJ IDEA project files)
+	id 'idea'// optional (to generate IntelliJ IDEA project files)
+	id 'jacoco'
 }
 
 repositories {
@@ -21,7 +22,17 @@ test {
 	useJUnitPlatform()
 	testLogging {
 		events "passed", "skipped", "failed"
+		finalizedBy jacocoTestReport // Finaliser le test par la génération du rapport JaCoCo
+	}
+	jacocoTestReport {
+		dependsOn test  // Assure que les tests sont exécutés avant la génération du rapport
+		reports {
+			xml.required = true  // Générer un rapport XML (utile pour d'autres outils)
+			html.outputLocation = layout.buildDirectory.dir('reports/jacoco/test')  // Dossier pour le rapport HTML
+		}
 	}
 
-	}
+
+
+}
 
