@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Set;
 
 
 public class CalculatorTest {
@@ -59,6 +60,34 @@ public class CalculatorTest {
         assertEquals(expected,ops.add(opG, opD), "L'addition n'a pas donné le bon résultat");
     }
 
+    @Test
+    void testEnsembleChiffres() {
+        // Test avec un nombre positif
+        Set<Integer> result1 = ops.ensembleChiffres(7679);
+        assertTrue(result1.contains(6));
+        assertTrue(result1.contains(7));
+        assertTrue(result1.contains(9));
+        assertEquals(3, result1.size(), "L'ensemble devrait contenir 3 chiffres distincts");
+
+        // Test avec un nombre négatif
+        Set<Integer> result2 = ops.ensembleChiffres(-11);
+        assertTrue(result2.contains(1));
+        assertEquals(1, result2.size(), "L'ensemble devrait contenir un seul chiffre");
+
+        // Test avec un nombre où tous les chiffres sont les mêmes
+        Set<Integer> result3 = ops.ensembleChiffres(1111);
+        assertTrue(result3.contains(1));
+        assertEquals(1, result3.size(), "L'ensemble devrait contenir un seul chiffre");
+
+        // Test avec un nombre ayant des chiffres distincts
+        Set<Integer> result4 = ops.ensembleChiffres(12345);
+        assertTrue(result4.contains(1));
+        assertTrue(result4.contains(2));
+        assertTrue(result4.contains(3));
+        assertTrue(result4.contains(4));
+        assertTrue(result4.contains(5));
+        assertEquals(5, result4.size(), "L'ensemble devrait contenir 5 chiffres distincts");
+    }
 
 }
 
