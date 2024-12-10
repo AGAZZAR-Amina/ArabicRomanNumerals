@@ -11,6 +11,9 @@ public class Calculator {
 
     // Méthode pour diviser deux nombres
     public   int divide(int opG, int opD) {
+        if (opD == 0) {
+            throw new ArithmeticException("Division par zéro");
+        }
         return opG / opD;
     }
 
