@@ -1,11 +1,31 @@
 package com.pantxi.calculator;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorTest {
 
     private Calculator ops;
+
+
+    // Méthode exécutée avant chaque test
+    @BeforeEach
+    public void setUp() {
+        // Initialisation des objets ou des valeurs communes à tous les tests
+        ops = new Calculator();
+        System.out.println("Initialisation avant chaque test");
+    }
+
+    // Méthode exécutée après chaque test
+    @AfterEach
+    public void tearDown() {
+        // Nettoyage après chaque test (facultatif)
+        System.out.println("Nettoyage après chaque test");
+    }
+
 
     @Test
         void testAdd() {
