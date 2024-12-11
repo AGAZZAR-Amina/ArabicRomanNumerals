@@ -32,6 +32,22 @@ test {
 		}
 	}
 
+	// Configuration pour JaCoCo Coverage Verification
+	jacocoTestCoverageVerification {
+		violationRules {
+			rule {
+				limit {
+					// Définissez le seuil global de couverture (par exemple, 80%)
+					minimum = 0.80
+				}
+			}
+		}
+	}
+
+// Ajoutez une dépendance à la tâche 'check'
+	check.dependsOn jacocoTestCoverageVerification
+
+
 
 
 }
